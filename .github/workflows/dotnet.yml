@@ -34,13 +34,14 @@ jobs:
         version: ${{ steps.previoustag.outputs.tag }}
         
     - name: Create Release
-      if: ${{ github.ref == 'refs/heads/main' }}
+      if: ${{ github.ref == 'refs/heads/main' && !contains(github.event.commits[0].message, 'chore') }}
       id: create_release
       uses: actions/create-release@latest
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
         tag_name: ${{ steps.semvers.outputs.patch }}
+        release_name: ${{ steps.semvers.outputs.patch }}
     - name: Restore dependencies
       run: dotnet restore
       
@@ -48,5 +49,5 @@ jobs:
       run: dotnet build --no-restore --configuration Release -p:Version=${{ steps.semvers.outputs.patch }}
       
     - name: Publish to Nuget
-      if: ${{ github.ref == 'refs/heads/main' }}
+      if: ${{ github.ref == 'refs/heads/main' && !contains(github.event.commits[0].message, 'chore') }}
       run: dotnet nuget push "*/bin/Release/*.nupkg" -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
