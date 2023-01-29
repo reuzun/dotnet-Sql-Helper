@@ -21,18 +21,29 @@ jobs:
       with:
         dotnet-version: 3.1.x
         
+    # Get the last tag
     - name: 'Get Previous tag'
       id: previoustag
       uses: "WyriHaximus/github-action-get-previous-tag@v1"
       with:
         fallback: 1.0.0 # Optional fallback tag to use when no tag can be found
         
-    - name: 'Get next minor version'
+    # Get next patch version and create related git tag.
+    - name: 'Get next patch version'
       id: semvers
       uses: "WyriHaximus/github-action-next-semvers@v1"
       with:
         version: ${{ steps.previoustag.outputs.tag }}
-        
+    
+    # Restore the dependencies
+    - name: Restore dependencies
+      run: dotnet restore
+     
+    # Build The Library, use last tag for version.
+    - name: Build
+      run: dotnet build --no-restore --configuration Release -p:Version=${{ steps.semvers.outputs.patch }}
+    
+    # Create git tag using new version.    
     - name: Create Release
       if: ${{ github.ref == 'refs/heads/main' && !contains(github.event.commits[0].message, 'chore') }}
       id: create_release
@@ -42,12 +53,8 @@ jobs:
       with:
         tag_name: ${{ steps.semvers.outputs.patch }}
         release_name: ${{ steps.semvers.outputs.patch }}
-    - name: Restore dependencies
-      run: dotnet restore
-      
-    - name: Build
-      run: dotnet build --no-restore --configuration Release -p:Version=${{ steps.semvers.outputs.patch }}
-      
+
+    # Publish to nuget the library
     - name: Publish to Nuget
       if: ${{ github.ref == 'refs/heads/main' && !contains(github.event.commits[0].message, 'chore') }}
       run: dotnet nuget push "*/bin/Release/*.nupkg" -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
