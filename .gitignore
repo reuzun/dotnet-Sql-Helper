@@ -36,3 +36,8 @@ msbuild.wrn
 # Visual Studio 2015
 .vs/
 Footer
+
+Reuzun.Run
+**/Reuzun.Run
+Reuzun.Run/**
+**/Reuzun.Run/**
