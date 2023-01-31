@@ -52,6 +52,27 @@ jobs:
       uses: irongut/CodeCoverageSummary@v1.3.0
       with:
         filename: /**/coverage.cobertura.xml
+        format: text
+        hide_branch_rate: false
+        hide_complexity: true
+        indicators: true
+        output: both
+        
+    - name: Code Coverage Percentage
+      id: codecoverage
+      run: echo "codeCoverage=`cat code-coverage-results.txt | tail -n1 | awk '{print $5}'`" >> $GITHUB_OUTPUT
+      
+    - name: Create Awesome Badge
+      uses: schneegans/dynamic-badges-action@v1.6.0
+      with:
+        auth: ${{ secrets.GIST_SECRET }}
+        gistID: d915b1f8f53c1209a3dbfb09d626b440
+        filename: test.json
+        label: Code Coverage
+        message: ${{ steps.codecoverage.outputs.codeCoverage }}
+        minColorRange: 20
+        maxColorRange: 80
+        valColorRange: ${{ steps.codecoverage.outputs.codeCoverage }}
     
     # Create git tag using new version.    
     - name: Create Release

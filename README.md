@@ -1,3 +1,5 @@
+[![.NET](https://github.com/reuzun/dotnet-Sql-Helper/actions/workflows/dotnet.yml/badge.svg)](https://github.com/reuzun/dotnet-Sql-Helper/actions/workflows/dotnet.yml) ![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/reuzun/d915b1f8f53c1209a3dbfb09d626b440/raw/test.json)
+
 # What is it?
 
 A SQL helper class that contains some utility methods which mainly aims to reduce code repetition.
