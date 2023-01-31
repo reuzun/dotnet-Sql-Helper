@@ -37,7 +37,5 @@ msbuild.wrn
 .vs/
 Footer
 
-Reuzun.Run
-**/Reuzun.Run
-Reuzun.Run/**
-**/Reuzun.Run/**
+Reuzun.DB.Tests/coveragereport
+Reuzun.DB.Tests/TestResults

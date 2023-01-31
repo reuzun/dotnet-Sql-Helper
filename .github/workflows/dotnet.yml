@@ -42,6 +42,16 @@ jobs:
     # Build The Library, use last tag for version.
     - name: Build
       run: dotnet build --no-restore --configuration Release -p:Version=${{ steps.semvers.outputs.patch }}
+      
+    # Build The Library, use last tag for version.
+    - name: Test
+      run: dotnet test --no-restore --no-build --configuration Release --collect:"XPlat Code Coverage"
+      
+    # Log Unit Test Coverage
+    - name: Code Coverage Report
+      uses: irongut/CodeCoverageSummary@v1.3.0
+      with:
+        filename: /**/coverage.cobertura.xml
     
     # Create git tag using new version.    
     - name: Create Release

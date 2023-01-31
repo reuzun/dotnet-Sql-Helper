@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reuzun.DB", "Reuzun.DB\Reuzun.DB.csproj", "{8B572D3E-8C3E-4920-B2D1-ACD906CCB4D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reuzun.DB.Tests", "Reuzun.DB.Tests\Reuzun.DB.Tests.csproj", "{34C01104-D8F4-4195-A740-E3ABFEA25840}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{8B572D3E-8C3E-4920-B2D1-ACD906CCB4D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B572D3E-8C3E-4920-B2D1-ACD906CCB4D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B572D3E-8C3E-4920-B2D1-ACD906CCB4D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34C01104-D8F4-4195-A740-E3ABFEA25840}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34C01104-D8F4-4195-A740-E3ABFEA25840}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34C01104-D8F4-4195-A740-E3ABFEA25840}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34C01104-D8F4-4195-A740-E3ABFEA25840}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
